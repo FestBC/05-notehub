@@ -9,7 +9,7 @@ interface GetResponse {
 export async function fetchNotes(query: string, page: number): Promise<GetResponse> {
     const response = await axios.get<GetResponse>("https://notehub-public.goit.study/api/notes", {
         headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+            Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`
         },
         params: {
             search: query,
@@ -28,7 +28,7 @@ export async function createNote(title: string, content: string, tag: string): P
         tag: tag
     }, {
         headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+            Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`
         }
     });
 
@@ -38,7 +38,7 @@ export async function createNote(title: string, content: string, tag: string): P
 export async function deleteNote(id: string): Promise<Note> {
     const response = await axios.delete<Note>(`https://notehub-public.goit.study/api/notes/${id}`, {
         headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_TOKEN}`
+            Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`
         }
     });
 
