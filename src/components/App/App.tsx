@@ -1,7 +1,6 @@
 import css from "./App.module.css";
 
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
-import { useDebouncedCallback } from "use-debounce";
 import { useState } from "react";
 
 import { fetchNotes } from "../../services/noteService";
@@ -28,12 +27,10 @@ export default function App() {
   const notes: Note[] = data?.notes ?? [];
   const totalPages: number = data?.totalPages ?? 0;
 
-  const handleChange = useDebouncedCallback(
-    (event: React.ChangeEvent<HTMLInputElement>): void => {
-      setQuery(event.target.value);
-      setPage(1);
-    },
-    300);
+  const handleChange = (value: string): void => {
+    setQuery(value);
+    setPage(1);
+  };
 
   const handleClose = (): void => {
     setIsModalOpened(false);
